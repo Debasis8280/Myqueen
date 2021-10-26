@@ -299,6 +299,10 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'index' => 'profile.index',
         'store' => 'profile.store'
     ])->middleware('signed');
+
+    Route::post('get_qr_code_for_wallet', [UserWalletController::class, 'get_qr_code_for_wallet'])->name('get_qr_code_for_wallet')->middleware('signed');
+    Route::post('store_wallet_payment', [UserWalletController::class, 'store_wallet_payment'])->name('store_wallet_payment')->middleware('signed');
+    Route::get('get_all_payment', [UserWalletController::class, 'get_all_payment'])->name('get_all_payment')->middleware('signed');
 });
 
 
@@ -337,7 +341,7 @@ Route::middleware(['auth', 'LangSwitch'])->name('MLM.')->prefix('MLM')->group(fu
 
 
 Route::get('/d', function () {
-    return view('admin.users.user_profile');
+    return view('font.demo');
 });
 
 

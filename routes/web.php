@@ -33,6 +33,7 @@ use App\Http\Controllers\User\UserProductsController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserPurchaseHistoryController;
 use App\Http\Controllers\User\UserThanksController;
+use App\Http\Controllers\User\UserWalletController;
 use App\Http\Controllers\User\UserWelcomeController;
 use App\Http\Controllers\User\UserWishlistController;
 use Illuminate\Support\Facades\Route;
@@ -292,6 +293,7 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'show' => 'purchase_history.show'
     ])->middleware('signed');
 
+    Route::get('/show_royalty', [UserWalletController::class, 'show_royalty_page'])->name('show_royalty')->middleware('signed');
     Route::post('get_pv_history', [UserProfileController::class, 'get_pv_point_history'])->name('profile.get_pv_point_history')->middleware('signed');
     Route::resource('user_profile', UserProfileController::class)->names([
         'index' => 'profile.index',

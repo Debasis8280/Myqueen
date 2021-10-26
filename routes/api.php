@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('v1/login', [APIAuthController::class, 'login']);
 Route::post('v1/register', [APIAuthController::class, 'register']);
 
+// Route::get('')
+
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);
 

@@ -44,8 +44,8 @@ class MLMTreeController extends Controller
                         'name'      => $item->member_name,
                         'member_id' => $item->member_id,
                         'img'       => $user->image == null ?  asset('asset/image/icon/user.png') : asset($user->image),
-                        // 'title'     => $ranking->type,
-                        'title'     => $item->member_id,
+                        'title'     => $ranking->type,
+                        // 'title'     => $item->member_id,
                         'tag'       => $item->placement
                     ];
                 }
@@ -83,8 +83,8 @@ class MLMTreeController extends Controller
                                     'name'      => $more_value->member_name,
                                     'member_id' => $more_value->member_id,
                                     'img'       => $many_more_user->image == null ?  asset('asset/image/icon/user.png') : asset($many_more_user->image),
-                                    // 'title'     => $more_ranking->type,
-                                    'title'     => $more_value->member_id,
+                                    'title'     => $more_ranking->type,
+                                    // 'title'     => $more_value->member_id,
                                     'tag'       => $more_value->placement
                                 ];
                             }

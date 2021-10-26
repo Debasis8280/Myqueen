@@ -346,6 +346,7 @@
         function show_wallet_modal() {
             $('#wallet_modal').removeClass('fade');
             $('#wallet_modal').modal('show');
+            $('#wallet_form')[0].reset()
         }
 
         function show_make_wallet_recharge_modal() {

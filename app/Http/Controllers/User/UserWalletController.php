@@ -93,4 +93,9 @@ class UserWalletController extends Controller
             ->where('wallets.user_id', Auth::user()->id)->get();
         echo json_encode($data);
     }
+
+    public function show_wallet_page()
+    {
+        return view('font.wallet.wallet');
+    }
 }

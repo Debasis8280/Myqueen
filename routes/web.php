@@ -300,6 +300,7 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'store' => 'profile.store'
     ])->middleware('signed');
 
+    Route::get('show_wallet_page', [UserWalletController::class, 'show_wallet_page'])->name('show_wallet_page')->middleware('signed');
     Route::post('get_qr_code_for_wallet', [UserWalletController::class, 'get_qr_code_for_wallet'])->name('get_qr_code_for_wallet')->middleware('signed');
     Route::post('store_wallet_payment', [UserWalletController::class, 'store_wallet_payment'])->name('store_wallet_payment')->middleware('signed');
     Route::get('get_all_payment', [UserWalletController::class, 'get_all_payment'])->name('get_all_payment')->middleware('signed');

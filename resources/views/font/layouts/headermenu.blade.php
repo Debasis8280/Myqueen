@@ -27,12 +27,12 @@
                                 <li><a href="{{ URL::signedRoute('MLM.register.index') }}">MLM</a></li>
                             @endif
                             <li><a href="{{ route('users.purchase_history.index') }}">Order History</a></li>
-                            <li><a href="credit-wallet.html">Credit Wallet</a></li>
+                            <li><a href="{{ URL::signedRoute('users.show_wallet_page') }}">Credit Wallet</a></li>
                             <li><a href="{{ URL::signedRoute('users.show_royalty') }}">Royalty Point Wallet </a></li>
                             <li>
                                 <a href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
-                                                                                                                                                                            document.getElementById('logout-form').submit();">Logout</a>
+                                                                                                                                                                                document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf

@@ -110,8 +110,8 @@
                         <h5 class="mb-0 h6">Wallet recharge history</h5>
                     </div>
                     <div class="card-body">
-                        <table id="table" data-toggle="table" data-ajax="get_all_payment" data-pagination="true"
-                            data-show-refresh="true" data-search="true" data-show-footer="true">
+                        <table id="table" data-toggle="table" data-height="600" data-ajax="get_all_payment"
+                            data-pagination="true" data-show-refresh="true" data-search="true" data-show-footer="true">
                             <thead>
                                 <tr>
                                     <th data-checkbox="true"></th>

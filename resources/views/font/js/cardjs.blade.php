@@ -45,7 +45,7 @@
                             '</div>' +
                             '<a href="#review" class="link-to-tab rating-reviews" id="rating_count"></a>' +
                             '</div>' +
-                              '</div>' +
+                            '</div>' +
 
                             '<div class="col-md-6 mt-9">' +
                             '<div class="item-quantity">' +
@@ -223,15 +223,30 @@
     })
 
     $('#home_delivery_option').click(function() {
-        $('#home_delivery_select').val(1);
+        // $('#home_delivery_select').val(1);
+        // $('#self_pickup_select').val(0)
+        // $('#address_btn').prop('disabled', false)
         $('#self_pickup_select').val(0)
         $('#address_btn').prop('disabled', false)
+        if ($('#home_delivery_select').val() == 1) {
+            $('#home_delivery_select').val(0)
+        } else {
+            $('#home_delivery_select').val(1)
+        }
+
     });
 
     $('#self_pickup_option').click(function() {
+        // $('#home_delivery_select').val(0);
+        // $('#self_pickup_select').val(1)
         $('#home_delivery_select').val(0);
-        $('#self_pickup_select').val(1)
         $('#address_btn').prop('disabled', false)
+        if ($('#self_pickup_select').val() == 1) {
+            $('#self_pickup_select').val(0)
+        } else {
+            $('#self_pickup_select').val(1)
+        }
+
     })
 
 

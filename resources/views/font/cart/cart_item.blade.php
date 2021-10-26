@@ -1,3 +1,11 @@
+<style>
+    .btn btn-primary{
+        padding: 10px 15px !important;
+    }
+    .item-price{
+        margin-top: 45px
+    }
+</style>
 <div class="row mt-5">
     <div class="col-md-8" id="cart_product_list">
         {{-- <div class="card mycard">

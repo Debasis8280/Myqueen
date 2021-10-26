@@ -8,99 +8,122 @@
         .nav-link {
             text-align: left;
         }
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+            background-color: #c89f63;
+        }
+        .card-body {
+    padding: 1.3rem 1.5rem;
+}
+.card{
+    border-radius:10px;
+}
+.nav-pills .nav-link.active{
+    padding-left:10px;
+}
 
     </style>
     <main class="main mt-6 single-product">
         <div class="page-content mb-10 pb-6">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
+                
+                    <div class="card">
                             <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    @php
+                                <div class="row">
+                        <div class="col-md-6">
+                            
+                                <div class="d-flex flex-column align-items-center text-center mt-7">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                                 @php
                                         $default_img = 'asset/image/icon/avatar7.png';
                                         $image = Auth::user()->image == null ? $default_img : Auth::user()->image;
                                     @endphp
                                     <img src="{{ asset($image) }}" alt="Admin" class="rounded-circle" style="width: 190px">
-                                    <div class="mt-3"
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mt-3"
                                         style="display: flex;align-items: flex-start;flex-direction: column;align-content: stretch;">
                                         <h4>{{ Auth::user()->name }}</h4>
                                         <p class="text-secondary mb-1 text-bold">Balance: 11111</p>
                                         <p class="text-bold mb-1">Total Revenue: 6000.000</p>
                                         <p class="text-bold mb-1">Points: {{ Auth::user()->total_pv_point }}pv</p>
                                     </div>
+                                        </div>
+                                    </div>
+                                   
+                                    
                                 </div>
-                            </div>
+                        
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
+                        <div class="col-md-6">
+                             <div class="row">
+                                    <div class="col-sm-12 text-right">
+                                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="Edit Profile" onclick="open_edit_modal()"
+                                            style="padding: 8px"><i class="fa fa-edit"></i></button>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Unique Id</h6>
+                                        <h6 class="mb-3">Unique Id</h6>
                                     </div>
                                     <div class="col-sm-9 ">
                                         {{ Auth::user()->unique_id }}
                                     </div>
                                 </div>
-                                <hr>
+                               
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
+                                        <h6 class="mb-3">Full Name</h6>
                                     </div>
                                     <div class="col-sm-9 ">
                                         {{ Auth::user()->name }}
                                     </div>
                                 </div>
-                                <hr>
+                                
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Email</h6>
+                                        <h6 class="mb-3">Email</h6>
                                     </div>
                                     <div class="col-sm-9 ">
                                         {{ Auth::user()->email }}
                                     </div>
                                 </div>
-                                <hr>
+                                
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Phone</h6>
+                                        <h6 class="mb-3">Phone</h6>
                                     </div>
                                     <div class="col-sm-9 ">
                                         {{ Auth::user()->phone }}
                                     </div>
                                 </div>
-                                <hr>
+                               
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Join</h6>
+                                        <h6 class="mb-3">Join</h6>
                                     </div>
                                     <div class="col-sm-9 ">
                                         {{ Auth::user()->created_at }}
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row mt-9">
+                             
+                                <div class="row mt-5">
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <button type="button" class="btn btn-primary" onclick="open_edit_modal()"
-                                            style="padding: 8px">Edit</button>
-                                    </div>
-                                </div>
+                               
                             </div>
                         </div>
-                    </div>
+                        </div>
+                        
+
+                    
                 </div>
 
 
 
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="card">
                             {{-- <h2>My Order</h2> --}}
                             <div class="card-body">
@@ -108,27 +131,27 @@
                                     aria-orientation="vertical">
                                     <a class="nav-link active" data-toggle="pill" href="#user_transaction" role="tab"
                                         aria-controls="v-pills-messages" aria-selected="false">
-                                        Pending Payment
+                                      <i class="la la-money"></i>  Pending Payment 
                                     </a>
                                     <a class="nav-link " data-toggle="pill" href="#user_kyc" role="tab"
                                         aria-controls="v-pills-home" aria-selected="true">
-                                        To Ship
+                                       <i class="la la-truck-moving"></i> To Ship
                                     </a>
                                     <a class="nav-link" id="show_passport_proof_tab" data-toggle="pill"
                                         href="#user_membership" role="tab" aria-controls="v-pills-profile"
                                         aria-selected="false">
-                                        To Receive
+                                       <i class="la la-handshake"></i>  To Receive
                                     </a>
                                     <a class="nav-link" id="" data-toggle="pill" href="#to_rate" role="tab"
                                         aria-controls="v-pills-profile" aria-selected="false">
-                                        To Rate
+                                    <i class="la la-star-o"></i>      To Rate
                                     </a>
 
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-9">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">

@@ -52,7 +52,7 @@ class UserOrderController extends Controller
             'address_part.required' => 'Please Select Address'
         ]);
         if ($request->address_part == 2) {
-            if ($request->home_delivery_select == null && $request->self_pickup_select == null) {
+            if ($request->home_delivery_select != 1 && $request->self_pickup_select != 1) {
                 $request->validate([
                     'select_one' => 'required'
                 ], [

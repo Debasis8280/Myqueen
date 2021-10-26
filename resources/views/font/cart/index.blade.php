@@ -20,7 +20,28 @@
             height: 1.3rem !important;
             width: 1.3rem !important;
         }
-
+        .card{
+            padding: 10px 0;
+            border-radius:10px;
+        }
+        .btn-primary.disabled, .btn-primary:disabled{
+            border-color: #c89f63;
+    background-color: #c89f63;
+}
+        }
+        .bs-stepper .bs-stepper-header .step.active .step-trigger .bs-stepper-box {
+    background-color: #c79e63;
+    color: #FFF;
+    box-shadow: 0 3px 6px 0 rgb(115 103 240 / 40%);
+}
+    .bs-stepper .bs-stepper-header .step.active .step-trigger .bs-stepper-box {
+    background-color: #c89f63;
+    color: #FFF;
+    box-shadow: 0 3px 6px 0 rgb(115 103 240 / 40%);
+}
+        .bs-stepper .bs-stepper-header .step.active .step-trigger .bs-stepper-label .bs-stepper-title {
+    color: #c89f63 !important;
+}
         .bs-stepper .bs-stepper-header .step .step-trigger .bs-stepper-box {
             display: -webkit-box;
             display: -webkit-flex;
@@ -203,7 +224,8 @@
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="collapse-shadow">
-                                                        <div class="card">
+                                                       
+                                                                 <div class="card">
                                                             <div class="card-header" data-toggle="collapse" role="button"
                                                                 data-target="#accordion10" aria-expanded="false"
                                                                 aria-controls="accordion10" id="home_delivery_option">
@@ -224,7 +246,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="card">
+                                                            
+                                                            
+                                                            <div class="card">
                                                             <div class="card-header" data-toggle="collapse" role="button"
                                                                 data-target="#accordion40" aria-expanded="false"
                                                                 aria-controls="accordion40" id="self_pickup_option">
@@ -236,7 +260,7 @@
                                                                 data-parent="#accordionWrapa10" aria-labelledby="heading40"
                                                                 class="collapse" aria-expanded="false">
                                                                 <div class="card-body">
-                                                                    <div class="row p-2">
+                                                                    <div class="row p-2 mb-4">
                                                                         <div class="row">
                                                                             <label>Country / Region *</label>
                                                                             <div class="">
@@ -250,7 +274,7 @@
                                                                                     id="country_self_error"></span>
                                                                             </div>
                                                                         </div>
-                                                                        <div class="row">
+                                                                        <div class="row mt-4">
                                                                             <div class="col-xs-6">
                                                                                 <label>State *</label>
                                                                                 <input type="text" class="form-control"
@@ -270,6 +294,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                     
+                                                        </div>
+                                                       
+                                                       
                                                     </div>
                                                 </div>
                                             </div>

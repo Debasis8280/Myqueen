@@ -1,0 +1,80 @@
+[23-Oct-2021 03:52:34 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:34 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:37 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:37 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:37 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:37 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:42 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:45 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:45 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:48 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:52:48 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:55:03 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:55:03 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:55:22 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:55:22 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:56:46 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:56:46 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:56:49 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:56:49 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:57:34 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:57:34 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:59:04 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 03:59:04 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 04:46:29 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 04:46:29 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 04:51:47 America/New_York] PHP Warning:  require(/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34
+[23-Oct-2021 04:51:47 America/New_York] PHP Fatal error:  Uncaught Error: Failed opening required '/home/bizzmantest/myqueen.testbizzm.com/public/../vendor/autoload.php' (include_path='.:/opt/alt/php80/usr/share/pear:/opt/alt/php80/usr/share/php:/usr/share/pear:/usr/share/php') in /home/bizzmantest/myqueen.testbizzm.com/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/bizzmantest/myqueen.testbizzm.com/public/index.php on line 34

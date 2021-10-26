@@ -24,15 +24,17 @@
                         $('#cart_product_list').append(' <div class="card mycard">' +
                             '<div class="card-body p-4">' +
                             '<div class="row">' +
-                            '<div class="item-img col-md-5">' +
+                            '<div class="item-img col-md-4">' +
                             '<a href="app-ecommerce-details.html">' +
                             '<img src="' + url + data[i]['image'] + '"' +
                             'alt="img-placeholder" style="width: 200px; height: 100%;">' +
                             '</a>' +
                             '</div>' +
-                            '<div class="col-md-4">' +
+                            '<div class="col-md-5">' +
+                            '<div class="row">' +
+                            '<div class="col-md-6 mt-9">' +
                             '<div class="item-name">' +
-                            '<h6 class="mb-0"><a href="app-ecommerce-details.html" class="text-body">' +
+                            '<h6 class="mb-0"><a href="app-ecommerce-details.html" class="text-body" style="display: inline-block;">' +
                             '' + data[i]['title'] + '</a></h6>' +
                             '</div>' +
 
@@ -43,8 +45,9 @@
                             '</div>' +
                             '<a href="#review" class="link-to-tab rating-reviews" id="rating_count"></a>' +
                             '</div>' +
+                              '</div>' +
 
-
+                            '<div class="col-md-6 mt-9">' +
                             '<div class="item-quantity">' +
                             '<span class="quantity-title">Qty:</span>' +
                             '<input id="demo1" type="text" value="' + data[i]['quentity'] +
@@ -55,15 +58,12 @@
                             '</div>' +
 
                             '</div>' +
+                            '</div>' +
+                            '</div>' +
 
-                            '<div class="item-options text-center col-md-3">' +
+                            '<div class="item-options text-center col-md-3 ">' +
                             '<div class="item-wrapper">' +
-                            '<div class="item-cost">' +
-                            '<h4 class="item-price">$' + data[i]['quentity'] * data[i]['saleprice'] +
-                            '</h4>' +
-                            '</div>' +
-                            '</div>' +
-                            '<button type="button" class=" btn btn-primary float-right" onclick="remove_from_cart(' +
+                            '<button style="padding: 10px 15px;" type="button" class=" btn btn-primary float-right" onclick="remove_from_cart(' +
                             data[i]['product_id'] + ',' + data[i]['cart_id'] + ')">' +
                             '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"' +
                             'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"' +
@@ -73,6 +73,12 @@
                             '</svg>' +
                             '<span>Remove</span>' +
                             '</button>' +
+                            '<div class="item-cost">' +
+                            '<h4 class="item-price">$' + data[i]['quentity'] * data[i]['saleprice'] +
+                            '</h4>' +
+                            '</div>' +
+                            '</div>' +
+
                             '</div>' +
 
                             '</div>' +
@@ -433,7 +439,7 @@
     })
 
     $('#address_previous_btn').click(function() {
-        $('#address_part').val(0)
+        $('#address_part').val("")
     })
     $('#address_btn').click(function() {
         check_delivery_charge()

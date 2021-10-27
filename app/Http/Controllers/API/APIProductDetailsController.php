@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class APIProductDetailsController extends Controller
@@ -20,5 +21,16 @@ class APIProductDetailsController extends Controller
                 'error' => 'Invalid Product Id'
             ], 401);
         }
+    }
+
+    public function get_all_review($id)
+    {
+        $data = Rating::join('users', 'users.id', '=', 'ratings.user_id')
+            ->select('users.name as UserName', 'ratings.*')
+            ->where('product_id', $id)->get();
+
+        return response([
+            $data
+        ], 201);
     }
 }

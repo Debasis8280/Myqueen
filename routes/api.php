@@ -39,6 +39,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('update_cart', [APICartController::class, 'update_cart']);
     Route::post('delete_from_cart', [APICartController::class, 'delete_from_cart']);
     Route::post('delivery_charge', [APIOrderController::class, 'delivery_charge']);
+    Route::post('coupon', [APIOrderController::class, 'check_coupon']);
 });
 
 

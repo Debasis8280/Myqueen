@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use PragmaRX\Countries\Package\Countries;
 
 class APIWelcomeController extends Controller
 {
@@ -17,6 +18,16 @@ class APIWelcomeController extends Controller
         }
         return response([
             'products' => $data,
+        ], 201);
+    }
+
+
+    public function all_country()
+    {
+        $countries = new Countries();
+        $all = $countries->all()->pluck('name.common')->toArray();
+        return response([
+            'countrys' => $all
         ], 201);
     }
 }

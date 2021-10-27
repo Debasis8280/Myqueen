@@ -12,6 +12,21 @@ use Illuminate\Support\Facades\File;
 
 class UserProfileController extends Controller
 {
+
+
+    public function show_pending_payment()
+    {
+        $data = Order::where('user_id', Auth::user()->id)->where('payment_status', 0)->get();
+        echo $data;
+    }
+
+    public function show_to_ship()
+    {
+        $data = Order::where('user_id', Auth::user()->id)->where('status_id', 4)->get();
+        echo $data;
+    }
+
+
     /**
      * Display a listing of the resource.
      *

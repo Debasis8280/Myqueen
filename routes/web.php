@@ -293,6 +293,8 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'show' => 'purchase_history.show'
     ])->middleware('signed');
 
+    Route::get('/show_pending_payment', [UserProfileController::class, 'show_pending_payment'])->name('show_pending_payment')->middleware('signed');
+    Route::get('/show_to_ship', [UserProfileController::class, 'show_to_ship'])->name('show_to_ship')->middleware('signed');
     Route::get('/show_royalty', [UserWalletController::class, 'show_royalty_page'])->name('show_royalty')->middleware('signed');
     Route::post('get_pv_history', [UserProfileController::class, 'get_pv_point_history'])->name('profile.get_pv_point_history')->middleware('signed');
     Route::resource('user_profile', UserProfileController::class)->names([

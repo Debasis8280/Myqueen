@@ -136,7 +136,7 @@
                             <div class="card-body">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <a class="nav-link active" data-toggle="pill" href="#user_transaction" role="tab"
+                                    <a class="nav-link active" data-toggle="pill" href="#pending_payment" role="tab"
                                         aria-controls="v-pills-messages" aria-selected="false">
                                         <i class="la la-money"></i> Pending Payment
                                     </a>
@@ -163,13 +163,13 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="tab-content" id="v-pills-tabContent">
-                                        <div class="tab-pane fade show active" id="user_transaction" role="tabpanel"
+                                        <div class="tab-pane fade show active" id="pending_payment" role="tabpanel"
                                             aria-labelledby="v-pills-settings-tab">
-                                            A
+                                            @include('font.profile.pending_payment')
                                         </div>
                                         <div class="tab-pane fade" id="user_kyc" role="tabpanel"
                                             aria-labelledby="v-pills-home-tab">
-                                            B
+                                            @include('font.profile.to_ship')
                                         </div>
                                         <div class="tab-pane fade" id="user_membership" role="tabpanel"
                                             aria-labelledby="v-pills-messages-tab">
@@ -302,6 +302,43 @@
                 }
             })
         });
+
+        function show_pending_payment(params) {
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::signedRoute('users.show_pending_payment') }}",
+                dataType: "json",
+                success: function(data) {
+                    params.success(data)
+                },
+                error: function(er) {
+                    params.error(er);
+                }
+            });
+        }
+
+        function total_pending(data) {
+            return "$ " + data;
+        }
+
+        function payment_status(data) {
+            return '<span class="badge badge-inline badge-danger">Processing</span>';
+        }
+
+
+        function show_to_ship(params) {
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::signedRoute('users.show_to_ship') }}",
+                dataType: "json",
+                success: function(data) {
+                    params.success(data)
+                },
+                error: function(er) {
+                    params.error(er);
+                }
+            });
+        }
     </script>
 @endsection
 @endsection

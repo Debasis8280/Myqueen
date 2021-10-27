@@ -41,4 +41,21 @@ class APICartController extends Controller
             'count' => $data
         ], 201);
     }
+
+
+    public function cart_list()
+    {
+        if (request()->lang == 'ch') {
+            $data = Cart::join('products', 'products.id', '=', 'carts.product_id')
+                ->select('products.productimagec as image', 'products.title', 'carts.quentity', 'products.saleprice', 'products.id as product_id', 'carts.id as cart_id')
+                ->where('carts.user_id', request()->user()->id)->get();
+        } else {
+            $data = Cart::join('products', 'products.id', '=', 'carts.product_id')
+                ->select('products.productimagee as image', 'products.title', 'carts.quentity', 'products.saleprice', 'products.id as product_id', 'carts.id as cart_id')
+                ->where('carts.user_id', request()->user()->id)->get();
+        }
+        return response([
+            'list' => $data
+        ], 201);
+    }
 }

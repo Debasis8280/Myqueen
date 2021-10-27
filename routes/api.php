@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\APIAuthController;
+use App\Http\Controllers\API\APICartController;
 use App\Http\Controllers\API\APIWelcomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,9 +26,7 @@ Route::get('v1/all_products', [APIWelcomeController::class, 'all_products']);
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);
 
-    Route::post('/d', function () {
-        echo "ads";
-    });
+    Route::post('add_to_cart', [APICartController::class, 'add_to_cart']);
 });
 
 

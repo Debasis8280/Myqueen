@@ -88,4 +88,20 @@ class APICartController extends Controller
             'message' => "You changed '" . $show->title . "' QUANTITY to '" . $show->quentity . "'"
         ]);
     }
+
+    public function delete_from_cart(Request $request)
+    {
+        $request->validate([
+            'product_id'    => 'required|exists:products,id',
+            'cart_id'       => 'required|exists:carts,id'
+        ], [
+            'product_id.required' => 'Please Refresh Something Wrong',
+            'cart_id.required'    => 'Please Refresh Something Wrong',
+        ]);
+
+        Cart::where('id', $request->cart_id)->where('product_id', $request->product_id)
+            ->where('user_id', $request->user()->id)->delete();
+
+        return response(['status' => 'success', 'message' => 'Successfully removed']);
+    }
 }

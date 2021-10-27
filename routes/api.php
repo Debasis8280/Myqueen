@@ -34,6 +34,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('add_review', [APIProductDetailsController::class, 'add_review']);
     Route::get('cart_list', [APICartController::class, 'cart_list']);
     Route::post('update_cart', [APICartController::class, 'update_cart']);
+    Route::post('delete_from_cart', [APICartController::class, 'delete_from_cart']);
 });
 
 

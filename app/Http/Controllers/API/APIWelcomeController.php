@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
@@ -29,5 +30,17 @@ class APIWelcomeController extends Controller
         return response([
             'countrys' => $all
         ], 201);
+    }
+
+
+    public function get_country_code()
+    {
+        $data = Country::get();
+        foreach ($data as $item) {
+            $code[] = ['code' => $item->name . '(' . $item->phonecode . ')'];
+        }
+        return response([
+            $code
+        ]);
     }
 }

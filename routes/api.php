@@ -27,6 +27,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);
 
     Route::post('add_to_cart', [APICartController::class, 'add_to_cart']);
+    Route::get('cart_count', [APICartController::class, 'cart_count']);
 });
 
 

@@ -32,4 +32,13 @@ class APICartController extends Controller
             'message' => 'Product Add Successfully'
         ], 201);
     }
+
+    public function cart_count()
+    {
+        $data = Cart::where('user_id', request()->user()->id)->count();
+
+        return response([
+            'count' => $data
+        ], 201);
+    }
 }

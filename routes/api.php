@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\APIAuthController;
+use App\Http\Controllers\API\APIWelcomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,8 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('v1/login', [APIAuthController::class, 'login']);
 Route::post('v1/register', [APIAuthController::class, 'register']);
-
-// Route::get('')
+Route::get('v1/all_products', [APIWelcomeController::class, 'all_products']);
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);
@@ -29,6 +29,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
         echo "ads";
     });
 });
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

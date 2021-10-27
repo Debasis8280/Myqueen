@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\APIAuthController;
 use App\Http\Controllers\API\APICartController;
+use App\Http\Controllers\API\APIOrderController;
 use App\Http\Controllers\API\APIProductDetailsController;
 use App\Http\Controllers\API\APIWelcomeController;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::get('cart_list', [APICartController::class, 'cart_list']);
     Route::post('update_cart', [APICartController::class, 'update_cart']);
     Route::post('delete_from_cart', [APICartController::class, 'delete_from_cart']);
+    Route::post('delivery_charge', [APIOrderController::class, 'delivery_charge']);
 });
 
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\APIAuthController;
 use App\Http\Controllers\API\APICartController;
+use App\Http\Controllers\API\APIProductDetailsController;
 use App\Http\Controllers\API\APIWelcomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('v1/login', [APIAuthController::class, 'login']);
 Route::post('v1/register', [APIAuthController::class, 'register']);
 Route::get('v1/all_products', [APIWelcomeController::class, 'all_products']);
+Route::get('v1/product_details/{id}', [APIProductDetailsController::class, 'product_details']);
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);

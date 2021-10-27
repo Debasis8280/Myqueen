@@ -33,4 +33,33 @@ class APIProductDetailsController extends Controller
             $data
         ], 201);
     }
+
+
+    public function add_review(Request $request)
+    {
+        $check = Rating::where('user_id', $request->user()->id)->where('product_id', $request->product_id)->first();
+        if (!$check) {
+            $request->validate([
+                'product_id' => 'required|exists:products,id',
+                'message'    => 'required',
+                'rating'     => 'required|numeric'
+            ], [
+                'product_id.required' => 'Product Id Required',
+                'message.required'    => 'Please Type Some Message'
+            ]);
+            Rating::create([
+                'user_id'       => $request->user()->id,
+                'product_id'    => $request->product_id,
+                'message'       => $request->message,
+                'rating'        => $request->rating
+            ]);
+            $data = ['status' => 'success', 'message' => 'Rating Add Successfully'];
+        } else {
+            $data = ['status' => 'faild', 'message' => 'You Alrady Rating This Product'];
+        }
+
+        return response([
+            $data
+        ], 201);
+    }
 }

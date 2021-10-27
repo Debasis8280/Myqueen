@@ -58,4 +58,34 @@ class APICartController extends Controller
             'list' => $data
         ], 201);
     }
+
+
+    public function update_cart(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'cart_id'    => 'required|exists:carts,id',
+            'quentity'   =>  'required'
+        ], [
+            'product_id.required' => 'Invalid Product Id',
+            'cart_id.required'    => 'Invalid Cart Id',
+            'quentity.required'   => 'Please Add Quentity'
+        ]);
+
+
+        Cart::where('id', $request->cart_id)->where('product_id', $request->product_id)->where('user_id', $request->user()->id)->update([
+            'quentity' => $request->quentity
+        ]);
+
+        $show =  Cart::join('products', 'products.id', '=', 'carts.product_id')
+            ->select('products.title', 'carts.quentity')
+            ->where('carts.id', $request->cart_id)
+            ->where('carts.product_id', $request->product_id)
+            ->where('carts.user_id', $request->user()->id)->first();
+
+        return response([
+            'status' => 'success',
+            'message' => "You changed '" . $show->title . "' QUANTITY to '" . $show->quentity . "'"
+        ]);
+    }
 }

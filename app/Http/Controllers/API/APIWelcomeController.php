@@ -39,8 +39,8 @@ class APIWelcomeController extends Controller
         foreach ($data as $item) {
             $code[] = ['code' => $item->name . '(' . $item->phonecode . ')'];
         }
-        return response([
+        return response(
             $code
-        ]);
+        );
     }
 }

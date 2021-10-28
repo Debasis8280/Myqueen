@@ -100,6 +100,15 @@ class APIOrderController extends Controller
 
     public function store_order(Request $request)
     {
+        if ($request->payment_method == 'Pay Now') {
+            $request->validate([
+                'offline_pay_screen_shot' => 'required|image'
+            ], [
+                'offline_pay_screen_shot.required' => 'Please Upload Payment Screenshot'
+            ], [
+                'offline_pay_screen_shot' => 'Screenshot'
+            ]);
+        }
 
         $ordernumber = Order::orderBy('id', 'desc')->first();
         if ($ordernumber == null) {
@@ -293,10 +302,5 @@ class APIOrderController extends Controller
             'message' => 'Just wanted to say thank you for your purchase. We’re so lucky to have customers like you',
             'order_id' => $order_id
         ]);
-
-        // $request->validate([
-        //     'offline_pay_screen_shot' => 'required|image',
-        // ]);
-        // return response([$request->offline_pay_screen_shot], 201);
     }
 }

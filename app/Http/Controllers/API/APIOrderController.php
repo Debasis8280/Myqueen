@@ -294,6 +294,6 @@ class APIOrderController extends Controller
         //     'order_id' => $order_id
         // ]);
 
-        return response([$request], 201);
+        return response([$request->first_name], 201);
     }
 }

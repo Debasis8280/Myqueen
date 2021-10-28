@@ -209,7 +209,7 @@ class APIOrderController extends Controller
                 'updated_at'    => now()
             ]);
             $ship_id = Shipping::insertGetId([
-                'user_id'       => $request->suser()->id,
+                'user_id'       => $request->user()->id,
                 'first_name'    => $request->first_name_ship,
                 'lastname'      => $request->last_name_ship,
                 'country'       => $request->country_ship,

@@ -165,7 +165,7 @@ class APIOrderController extends Controller
         $bill_id = 0;
         $ship_id = 0;
 
-        if ($request->is_self_pickup_selected == true) {
+        if ($request->is_self_pickup_selected == 'true') {
             $shipping_method = 'Self Pick';
             $status_id = 0;
         } else {
@@ -173,7 +173,7 @@ class APIOrderController extends Controller
             $status_id = 1;
         }
 
-        if ($request->is_self_pickup_selected == false) {
+        if ($request->is_self_pickup_selected == 'false') {
             $check = ShippingCharge::where('country', $request->country)->first();
             if ($check) {
                 $total = $total + $check->amount;
@@ -187,7 +187,7 @@ class APIOrderController extends Controller
             $total = $total;
         }
 
-        if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == true) {
+        if ($request->is_self_pickup_selected == 'false' && $request->is_ship_same_to_bill == 'true') {
             $bill_id = Billing::insertGetId([
                 'user_id'       => $request->user()->id,
                 'first_name'    => $request->first_name,
@@ -204,7 +204,7 @@ class APIOrderController extends Controller
             $ship_id = $bill_id;
         }
 
-        if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == false) {
+        if ($request->is_self_pickup_selected == 'false' && $request->is_ship_same_to_bill == 'false') {
             $bill_id = Billing::insertGetId([
                 'user_id'       => $request->user()->id,
                 'first_name'    => $request->first_name,
@@ -260,7 +260,7 @@ class APIOrderController extends Controller
             'updated_at'    => now()
         ]);
 
-        if ($request->is_self_pickup_selected == true) {
+        if ($request->is_self_pickup_selected == 'true') {
             SelfPick::create([
                 'user_id' => $request->user()->id,
                 'order_id' => $order_id,

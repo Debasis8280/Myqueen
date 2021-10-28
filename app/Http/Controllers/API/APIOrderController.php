@@ -258,6 +258,6 @@ class APIOrderController extends Controller
         //         'zip'       => $request->zip_self
         //     ]);
         // }
-        echo $request->is_self_pickup_selected;
+        echo $request->is_self_pickup_selected == false;
     }
 }

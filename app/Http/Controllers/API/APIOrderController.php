@@ -89,7 +89,7 @@ class APIOrderController extends Controller
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $postArray);
         $response = curl_exec($ch);
-        echo $response;
+        return response($response, 201);
     }
 
 

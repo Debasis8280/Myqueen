@@ -91,4 +91,9 @@ class APIOrderController extends Controller
         $response = curl_exec($ch);
         echo $response;
     }
+
+
+    public function store_order()
+    {
+    }
 }

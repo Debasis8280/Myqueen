@@ -5,7 +5,7 @@
 
 </style>
 <table id="table" data-toggle="table" data-height="500" data-ajax="show_pending_payment" data-pagination="true"
-    data-show-refresh="true" data-search="true" data-show-footer="true">
+    data-show-refresh="true" data-search="true">
     <thead>
         <tr>
             <th data-checkbox="true" data-footer-formatter="total"></th>

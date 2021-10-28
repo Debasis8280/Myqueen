@@ -294,6 +294,9 @@ class APIOrderController extends Controller
         //     'order_id' => $order_id
         // ]);
 
-        return response([$request->first_name], 201);
+        $request->validate([
+            'offline_pay_screen_shot' => 'required|image',
+        ]);
+        return response([$request->offline_pay_screen_shot], 201);
     }
 }

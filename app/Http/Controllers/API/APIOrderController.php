@@ -7,6 +7,7 @@ use App\Models\Billing;
 use App\Models\Cart;
 use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\SelfPick;
 use App\Models\Shipping;
@@ -259,6 +260,23 @@ class APIOrderController extends Controller
             ]);
         }
 
-        return response('ok', 201);
+
+        // add to order item
+        foreach ($cart as $item) {
+            $product = Product::find($item->product_id);
+            OrderItem::create([
+                'user_id' => $request->user()->id,
+                'order_id'   => $order_id,
+                'product_id' => $product->id,
+                'price'      => $product->saleprice,
+                'pv'         => $product->pv,
+                'quentity'   => $item->quentity
+            ]);
+
+            // Cart::where('id', $item->id)->delete();
+        }
+
+
+        return response(['ok'], 201);
     }
 }

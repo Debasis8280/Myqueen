@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\PvPoint;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,15 @@ class APIProfileController extends Controller
             ->select('pv_points.*', 'orders.order_unique as order_unique_id')
             ->where('pv_points.user_id', request()->user()->id)
             ->get();
+        return response(
+            $data,
+            201
+        );
+    }
+
+    public function order_history()
+    {
+        $data = Order::where('user_id', request()->user()->id)->get();
         return response(
             $data,
             201

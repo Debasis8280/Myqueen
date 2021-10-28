@@ -41,12 +41,14 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('delete_from_cart', [APICartController::class, 'delete_from_cart']);
     Route::post('delivery_charge', [APIOrderController::class, 'delivery_charge']);
     Route::post('coupon', [APIOrderController::class, 'check_coupon']);
+    Route::post('payment_qrcode', [APIOrderController::class, 'payment_qrcode']);
 
 
 
 
     Route::get('profile_data', [APIProfileController::class, 'profile_data']);
     Route::get('get_pv_point', [APIProfileController::class, 'get_pv_point']);
+    Route::get('order_history', [APIProfileController::class, 'order_history']);
 });
 
 

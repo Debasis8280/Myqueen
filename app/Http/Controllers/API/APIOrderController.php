@@ -210,8 +210,8 @@ class APIOrderController extends Controller
             ]);
             $ship_id = Shipping::insertGetId([
                 'user_id'       => $request->user()->id,
-                'first_name'    => $request->first_name_ship,
-                'lastname'      => $request->last_name_ship,
+                'first_name'    => $request->firstname_ship,
+                'lastname'      => $request->lastname_ship,
                 'country'       => $request->country_ship,
                 'address'       => $request->address_ship,
                 'city'          => $request->city_ship,

@@ -142,7 +142,7 @@ class APIOrderController extends Controller
                     $discount_amount = $per_cal;
                     $how_may_discount = $coupon->discount_number;
                 }
-                $coupon_code = $request->apply_coupon;
+                $coupon_code = $request->coupon;
             }
         }
 

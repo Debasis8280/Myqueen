@@ -173,7 +173,7 @@
                                         </div>
                                         <div class="tab-pane fade" id="user_membership" role="tabpanel"
                                             aria-labelledby="v-pills-messages-tab">
-                                            c
+                                            @include('font.profile.to_receive')
                                         </div>
                                         <div class="tab-pane fade" id="to_rate" role="tabpanel"
                                             aria-labelledby="v-pills-messages-tab">
@@ -330,6 +330,20 @@
             $.ajax({
                 type: "GET",
                 url: "{{ URL::signedRoute('users.show_to_ship') }}",
+                dataType: "json",
+                success: function(data) {
+                    params.success(data)
+                },
+                error: function(er) {
+                    params.error(er);
+                }
+            });
+        }
+
+        function show_to_receive(params) {
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::signedRoute('users.show_to_receive') }}",
                 dataType: "json",
                 success: function(data) {
                     params.success(data)

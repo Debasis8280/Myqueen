@@ -26,6 +26,12 @@ class UserProfileController extends Controller
         echo $data;
     }
 
+    public function show_to_receive()
+    {
+        $data = Order::where('user_id', Auth::user()->id)->where('status_id', 5)->get();
+        echo $data;
+    }
+
 
     /**
      * Display a listing of the resource.

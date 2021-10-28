@@ -66,4 +66,29 @@ class APIOrderController extends Controller
             return response(['status' => 'Faild', 'message' => 'Invalid Coupon']);
         }
     }
+
+
+    public function payment_qrcode()
+    {
+        $postArray = array();
+        $postArray['user_id'] = 'S111417';
+        $postArray["user_password"] = md5('S111417' . '4ba2e90ba890799fb708e9f0bca9a648');
+        $postArray['amount'] = request()->total;
+        $postArray['notify_url'] = 'd';
+        $sign_string = md5($postArray['user_id'] . $postArray["user_password"] . $postArray['amount'] . $postArray['notify_url'] . '4ba2e90ba890799fb708e9f0bca9a648');
+        $postArray["sign_string"] = $sign_string;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://mctpayment.com/dci/api_v2/get_fixed_amount_qrcode');
+        curl_setopt($ch, CURLOPT_VERBOSE, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 40);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $postArray);
+        $response = curl_exec($ch);
+        echo $response;
+    }
 }

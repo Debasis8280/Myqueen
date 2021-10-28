@@ -293,6 +293,7 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'show' => 'purchase_history.show'
     ])->middleware('signed');
 
+    Route::get('show_to_receive', [UserProfileController::class, 'show_to_receive'])->name('show_to_receive')->middleware('signed');
     Route::get('/show_pending_payment', [UserProfileController::class, 'show_pending_payment'])->name('show_pending_payment')->middleware('signed');
     Route::get('/show_to_ship', [UserProfileController::class, 'show_to_ship'])->name('show_to_ship')->middleware('signed');
     Route::get('/show_royalty', [UserWalletController::class, 'show_royalty_page'])->name('show_royalty')->middleware('signed');
@@ -301,6 +302,7 @@ Route::middleware(['auth', 'LangSwitch'])->name('users.')->group(function () {
         'index' => 'profile.index',
         'store' => 'profile.store'
     ])->middleware('signed');
+
 
     Route::get('show_wallet_page', [UserWalletController::class, 'show_wallet_page'])->name('show_wallet_page')->middleware('signed');
     Route::post('get_qr_code_for_wallet', [UserWalletController::class, 'get_qr_code_for_wallet'])->name('get_qr_code_for_wallet')->middleware('signed');

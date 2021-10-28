@@ -4,7 +4,7 @@
     }
 
 </style>
-<table id="table" data-toggle="table" data-height="500" data-ajax="show_pending_payment" data-pagination="true"
+<table id="table" data-toggle="table" data-height="500" data-ajax="show_to_receive" data-pagination="true"
     data-show-refresh="true" data-search="true" data-show-footer="true">
     <thead>
         <tr>

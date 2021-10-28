@@ -12,7 +12,7 @@
             <th data-field="order_unique">Sponser Id</th>
             <th data-field="total" data-formatter="total_pending">Total
             </th>
-            <th data-field="payment_status" data-formatter="payment_status">Status
+            <th data-field="payment_status" data-formatter="payment_status">Payment Status
             </th>
             <th data-field="created_at">Date</th>
             </th>

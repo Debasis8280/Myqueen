@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Billing;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\OfflinePay;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -100,183 +101,197 @@ class APIOrderController extends Controller
     public function store_order(Request $request)
     {
 
-        $ordernumber = Order::orderBy('id', 'desc')->first();
-        if ($ordernumber == null) {
-            $number = 'MQO0000001';
-        } else {
-            $number = str_replace('MQO', '', $ordernumber->order_unique);
-            $number =  "MQO" . sprintf("%07d", $number + 1);
-        }
+        // $ordernumber = Order::orderBy('id', 'desc')->first();
+        // if ($ordernumber == null) {
+        //     $number = 'MQO0000001';
+        // } else {
+        //     $number = str_replace('MQO', '', $ordernumber->order_unique);
+        //     $number =  "MQO" . sprintf("%07d", $number + 1);
+        // }
 
-        $quentity = Cart::where('user_id', $request->user()->id)->sum('quentity');
-        $cart = Cart::where('user_id', $request->user()->id)->get();
-        $order_sum = 0;
-        $total = 0;
-        $total_pv = 0;
-        foreach ($cart as $item) {
-            $product = Product::find($item->product_id);
+        // $quentity = Cart::where('user_id', $request->user()->id)->sum('quentity');
+        // $cart = Cart::where('user_id', $request->user()->id)->get();
+        // $order_sum = 0;
+        // $total = 0;
+        // $total_pv = 0;
+        // foreach ($cart as $item) {
+        //     $product = Product::find($item->product_id);
 
-            $order_sum = $order_sum + ($product->saleprice * $item->quentity);
+        //     $order_sum = $order_sum + ($product->saleprice * $item->quentity);
 
-            $total_pv = $total_pv + ($product->pv * $item->quentity);
-        }
-        $total = $order_sum;
+        //     $total_pv = $total_pv + ($product->pv * $item->quentity);
+        // }
+        // $total = $order_sum;
 
-        $coupon = Coupon::where('number', $request->coupon)->first();
-        $discount_type = null;
-        $after_discount_amount = 0;
-        $discount_amount = 0;
-        $how_may_discount = 0;
-        $coupon_code = null;
-        if ($coupon) {
-            if ($order_sum > $coupon->discount_number) {
-                if ($coupon->discount_type == 'Fixed') {
-                    $after_discount_amount = $total - $coupon->discount_number;
-                    $discount_type = 'Fixed';
-                    $discount_amount = $coupon->discount_number;
-                    $how_may_discount = $coupon->discount_number;
-                } else {
-                    $per_cal = ($coupon->discount_number / 100) * $total;
-                    $after_discount_amount =  $total - $per_cal;
-                    $discount_type = '%';
-                    $discount_amount = $per_cal;
-                    $how_may_discount = $coupon->discount_number;
-                }
-                $coupon_code = $request->coupon;
-            }
-        }
-
-
-        $order_unique = $number;
-        $user_id = $request->user()->id;
-        $payment_method = $request->payment_method;
-        $user_ip = $request->ip();
-        $order_currency = "$";
-        $bill_id = 0;
-        $ship_id = 0;
-
-        if ($request->is_self_pickup_selected == true) {
-            $shipping_method = 'Self Pick';
-            $status_id = 0;
-        } else {
-            $shipping_method = 'Home Delivery';
-            $status_id = 1;
-        }
-
-        if ($request->is_self_pickup_selected == false) {
-            $check = ShippingCharge::where('country', $request->country)->first();
-            if ($check) {
-                $total = $total + $check->amount;
-                $delivery_charge = $check->amount;
-            } else {
-                $delivery_charge = 0;
-                $total = $total;
-            }
-        } else {
-            $delivery_charge = 0;
-            $total = $total;
-        }
-
-        if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == true) {
-            $bill_id = Billing::insertGetId([
-                'user_id'       => $request->user()->id,
-                'first_name'    => $request->first_name,
-                'lastname'      => $request->lastname,
-                'country'       => $request->country,
-                'address'       => $request->address,
-                'city'          => $request->city,
-                'state'         => $request->state,
-                'zip'           => $request->zip,
-                'Phone'         => $request->phone,
-                'created_at'    => now(),
-                'updated_at'    => now()
-            ]);
-            $ship_id = $bill_id;
-        }
-
-        if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == false) {
-            $bill_id = Billing::insertGetId([
-                'user_id'       => $request->user()->id,
-                'first_name'    => $request->first_name,
-                'lastname'      => $request->lastname,
-                'country'       => $request->country,
-                'address'       => $request->address,
-                'city'          => $request->city,
-                'state'         => $request->state,
-                'zip'           => $request->zip,
-                'Phone'         => $request->phone,
-                'created_at'    => now(),
-                'updated_at'    => now()
-            ]);
-            $ship_id = Shipping::insertGetId([
-                'user_id'       => $request->user()->id,
-                'first_name'    => $request->first_name_ship,
-                'lastname'      => $request->lastname_ship,
-                'country'       => $request->country_ship,
-                'address'       => $request->address_ship,
-                'city'          => $request->city_ship,
-                'state'         => $request->state_ship,
-                'zip'           => $request->zip_ship,
-                'Phone'         => $request->phone_ship,
-                'created_at'    => now(),
-                'updated_at'    => now()
-            ]);
-        }
+        // $coupon = Coupon::where('number', $request->coupon)->first();
+        // $discount_type = null;
+        // $after_discount_amount = 0;
+        // $discount_amount = 0;
+        // $how_may_discount = 0;
+        // $coupon_code = null;
+        // if ($coupon) {
+        //     if ($order_sum > $coupon->discount_number) {
+        //         if ($coupon->discount_type == 'Fixed') {
+        //             $after_discount_amount = $total - $coupon->discount_number;
+        //             $discount_type = 'Fixed';
+        //             $discount_amount = $coupon->discount_number;
+        //             $how_may_discount = $coupon->discount_number;
+        //         } else {
+        //             $per_cal = ($coupon->discount_number / 100) * $total;
+        //             $after_discount_amount =  $total - $per_cal;
+        //             $discount_type = '%';
+        //             $discount_amount = $per_cal;
+        //             $how_may_discount = $coupon->discount_number;
+        //         }
+        //         $coupon_code = $request->coupon;
+        //     }
+        // }
 
 
-        $order_id = Order::insertGetId([
-            'order_unique' => $number,
-            'user_id' => $request->user()->id,
-            'payment_method' => $payment_method,
-            'shipping_method' => $shipping_method,
-            'user_ip' => $request->ip(),
-            'order_currency' => '$',
-            'billing_id' => $bill_id,
-            'shipping_id' => $ship_id,
-            'status_id' => $status_id,
-            'quentity' => $quentity,
-            'order_sum' => $order_sum,
-            'total_pv' => $total_pv,
-            'in_house_status' => null,
-            'coupon_code' => $coupon_code,
-            'discount_amount' => $discount_amount,
-            'how_may_discount'  => $how_may_discount,
-            'discount_type' => $discount_type,
-            'after_discount_price' => $after_discount_amount,
-            'shipping_charge' => $delivery_charge,
-            'payment_status' => 0,
-            'total' => $after_discount_amount != null ? $after_discount_amount + $delivery_charge : $order_sum + $delivery_charge,
-            'created_at'    => now(),
-            'updated_at'    => now()
-        ]);
+        // $order_unique = $number;
+        // $user_id = $request->user()->id;
+        // $payment_method = $request->payment_method;
+        // $user_ip = $request->ip();
+        // $order_currency = "$";
+        // $bill_id = 0;
+        // $ship_id = 0;
 
-        if ($request->is_self_pickup_selected == true) {
-            SelfPick::create([
-                'user_id' => $request->user()->id,
-                'order_id' => $order_id,
-                'country'   => $request->country_self,
-                'state'     => $request->state_self,
-                'zip'       => $request->zip_self
-            ]);
-        }
+        // if ($request->is_self_pickup_selected == true) {
+        //     $shipping_method = 'Self Pick';
+        //     $status_id = 0;
+        // } else {
+        //     $shipping_method = 'Home Delivery';
+        //     $status_id = 1;
+        // }
+
+        // if ($request->is_self_pickup_selected == false) {
+        //     $check = ShippingCharge::where('country', $request->country)->first();
+        //     if ($check) {
+        //         $total = $total + $check->amount;
+        //         $delivery_charge = $check->amount;
+        //     } else {
+        //         $delivery_charge = 0;
+        //         $total = $total;
+        //     }
+        // } else {
+        //     $delivery_charge = 0;
+        //     $total = $total;
+        // }
+
+        // if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == true) {
+        //     $bill_id = Billing::insertGetId([
+        //         'user_id'       => $request->user()->id,
+        //         'first_name'    => $request->first_name,
+        //         'lastname'      => $request->lastname,
+        //         'country'       => $request->country,
+        //         'address'       => $request->address,
+        //         'city'          => $request->city,
+        //         'state'         => $request->state,
+        //         'zip'           => $request->zip,
+        //         'Phone'         => $request->phone,
+        //         'created_at'    => now(),
+        //         'updated_at'    => now()
+        //     ]);
+        //     $ship_id = $bill_id;
+        // }
+
+        // if ($request->is_self_pickup_selected == false && $request->is_ship_same_to_bill == false) {
+        //     $bill_id = Billing::insertGetId([
+        //         'user_id'       => $request->user()->id,
+        //         'first_name'    => $request->first_name,
+        //         'lastname'      => $request->lastname,
+        //         'country'       => $request->country,
+        //         'address'       => $request->address,
+        //         'city'          => $request->city,
+        //         'state'         => $request->state,
+        //         'zip'           => $request->zip,
+        //         'Phone'         => $request->phone,
+        //         'created_at'    => now(),
+        //         'updated_at'    => now()
+        //     ]);
+        //     $ship_id = Shipping::insertGetId([
+        //         'user_id'       => $request->user()->id,
+        //         'first_name'    => $request->first_name_ship,
+        //         'lastname'      => $request->lastname_ship,
+        //         'country'       => $request->country_ship,
+        //         'address'       => $request->address_ship,
+        //         'city'          => $request->city_ship,
+        //         'state'         => $request->state_ship,
+        //         'zip'           => $request->zip_ship,
+        //         'Phone'         => $request->phone_ship,
+        //         'created_at'    => now(),
+        //         'updated_at'    => now()
+        //     ]);
+        // }
 
 
-        // add to order item
-        foreach ($cart as $item) {
-            $product = Product::find($item->product_id);
-            OrderItem::create([
-                'user_id' => $request->user()->id,
-                'order_id'   => $order_id,
-                'product_id' => $product->id,
-                'price'      => $product->saleprice,
-                'pv'         => $product->pv,
-                'quentity'   => $item->quentity
-            ]);
+        // $order_id = Order::insertGetId([
+        //     'order_unique' => $number,
+        //     'user_id' => $request->user()->id,
+        //     'payment_method' => $payment_method,
+        //     'shipping_method' => $shipping_method,
+        //     'user_ip' => $request->ip(),
+        //     'order_currency' => '$',
+        //     'billing_id' => $bill_id,
+        //     'shipping_id' => $ship_id,
+        //     'status_id' => $status_id,
+        //     'quentity' => $quentity,
+        //     'order_sum' => $order_sum,
+        //     'total_pv' => $total_pv,
+        //     'in_house_status' => null,
+        //     'coupon_code' => $coupon_code,
+        //     'discount_amount' => $discount_amount,
+        //     'how_may_discount'  => $how_may_discount,
+        //     'discount_type' => $discount_type,
+        //     'after_discount_price' => $after_discount_amount,
+        //     'shipping_charge' => $delivery_charge,
+        //     'payment_status' => 0,
+        //     'total' => $after_discount_amount != null ? $after_discount_amount + $delivery_charge : $order_sum + $delivery_charge,
+        //     'created_at'    => now(),
+        //     'updated_at'    => now()
+        // ]);
 
-            // Cart::where('id', $item->id)->delete();
-        }
+        // if ($request->is_self_pickup_selected == true) {
+        //     SelfPick::create([
+        //         'user_id' => $request->user()->id,
+        //         'order_id' => $order_id,
+        //         'country'   => $request->country_self,
+        //         'state'     => $request->state_self,
+        //         'zip'       => $request->zip_self
+        //     ]);
+        // }
 
 
-        return response(['ok'], 201);
+        // // add to order item
+        // foreach ($cart as $item) {
+        //     $product = Product::find($item->product_id);
+        //     OrderItem::create([
+        //         'user_id' => $request->user()->id,
+        //         'order_id'   => $order_id,
+        //         'product_id' => $product->id,
+        //         'price'      => $product->saleprice,
+        //         'pv'         => $product->pv,
+        //         'quentity'   => $item->quentity
+        //     ]);
+
+        //     // Cart::where('id', $item->id)->delete();
+        // }
+
+        // // add payment screenshot image 
+        // if ($payment_method == 'Pay Now') {
+        //     $screen_shot = $request->offline_pay_screen_shot->storeAs('Offline_pay', "order_id_" . $order_id . "." . $request->offline_pay_screen_shot->extension());
+        //     OfflinePay::create([
+        //         'user_id' => $request->user()->id,
+        //         'order_id' => $order_id,
+        //         'screen_shot' => $screen_shot,
+        //         'status'    => 0
+        //     ]);
+        // }
+
+
+
+        return response([$request->offline_pay_screen_shot], 201);
+
+        // return response(['ok'], 201);
     }
 }

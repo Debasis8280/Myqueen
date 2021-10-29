@@ -360,6 +360,17 @@ class APIOrderController extends Controller
             ];
         }
 
-        return response($order_summary, 201);
+        $order_details = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
+            ->join('products', 'products.id', '=', 'order_items.product_id')
+            ->select(
+                'products.title',
+                'products.productimagee as image',
+                'order_items.quentity as qun',
+                'orders.shipping_method',
+                'products.saleprice'
+            )
+            ->where('orders.id', $request->order_id)->get();
+
+        return response(['order_summary' => $order_summary, 'order_details' => $order_details], 201);
     }
 }

@@ -52,6 +52,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::get('order_history', [APIProfileController::class, 'order_history']);
     Route::get('wallet_history', [APIProfileController::class, 'wallet_history']);
     Route::get('order_history_details', [APIOrderController::class, 'order_history_details']);
+    Route::post('edit_profile', [APIProfileController::class, 'edit_profile']);
 });
 
 

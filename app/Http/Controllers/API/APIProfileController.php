@@ -72,8 +72,15 @@ class APIProfileController extends Controller
 
     public function edit_profile(Request $request)
     {
-        $request->validate([
-            'email' => ''
+        $data = $request->validate([
+            'email' => 'required|email|unique:users,email,' . $request->user()->id,
+            'name' => 'required',
+            'phone' => 'required|numeric',
         ]);
+
+        User::where('id', $request->user()->id)->update($data);
+        return response([
+            'message' => 'Update Successfully'
+        ], 201);
     }
 }

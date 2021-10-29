@@ -9,6 +9,7 @@ use App\Models\Coupon;
 use App\Models\OfflinePay;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use App\Models\SelfPick;
 use App\Models\Shipping;
@@ -374,14 +375,67 @@ class APIOrderController extends Controller
         return response(['order_summary' => $order_summary, 'order_details' => $order_details], 201);
     }
 
-    public function order_history_details()
+    public function order_history_details(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'order_id' => 'required|exists:orders,id'
         ]);
-        $data = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
+        $check = SelfPick::where('order_id', $request->order_id)->first();
+        $order_data = Order::find($request->order_id);
+        if ($check) {
+            $order_summary = [
+                'order_no' => $order_data->order_unique,
+                'order_date' => $order_data->created_at,
+                'name'  => $request->user()->name,
+                'order_status' => 'Processing',
+                'email' => $request->user()->email,
+                'total_order_amount' => $order_data->total,
+                'shipping_address' => $check->country . ', ' . $check->state . ', ' . $check->zip,
+                'shipping' => $order_data->shipping_method,
+                'payment_method' => $order_data->payment_method,
+                'sub_total' => $order_data->order_sum,
+                'shipping_charge'   => $order_data->shipping_charge,
+                'coupon_discount'   => $order_data->how_may_discount . " " . $order_data->discount_type,
+                'total_amount' => $order_data->total
+            ];
+        } else {
+            if ($order_data->is_bill_same_ship == 1) {
+                $ship_address = Order::join('billings', 'billings.id', '=', 'orders.billing_id')
+                    ->where('orders.id', $request->order_id)->first();
+            } else {
+                $ship_address = Order::join('shippings', 'shippings.id', '=', 'orders.shipping_id')
+                    ->where('orders.id', $request->order_id)->first();
+            }
+
+
+            $order_summary = [
+                'order_no' => $order_data->order_unique,
+                'order_date' => $order_data->created_at,
+                'name'  => $ship_address->first_name . ' ' . $ship_address->lastname,
+                'order_status' => 'Processing',
+                'email' => $request->user()->email,
+                'total_order_amount' => $order_data->total,
+                'shipping_address' => $ship_address->address . ", " . $ship_address->country . ', ' . $ship_address->state . ', ' . $ship_address->zip,
+                'shipping' => $order_data->shipping_method,
+                'payment_method' => $order_data->payment_method,
+                'sub_total' => $order_data->order_sum,
+                'shipping_charge'   => $order_data->shipping_charge,
+                'coupon_discount'   => $order_data->how_may_discount . " " . $order_data->discount_type,
+                'total_amount' => $order_data->total
+            ];
+        }
+
+        $order_details = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
-            ->where('orders.id', request()->order_id)->where('orders.user_id', request()->user()->id)->get();
-        return response($data, 201);
+            ->select(
+                'products.title',
+                'products.productimagee as image',
+                'order_items.quentity as qun',
+                'orders.shipping_method',
+                'products.saleprice'
+            )
+            ->where('orders.id', $request->order_id)->get();
+
+        return response(['order_summary' => $order_summary, 'order_details' => $order_details], 201);
     }
 }

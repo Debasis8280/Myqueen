@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Billing;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\PvPoint;
+use App\Models\Shipping;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -81,6 +83,17 @@ class APIProfileController extends Controller
         User::where('id', $request->user()->id)->update($data);
         return response([
             'message' => 'Update Successfully'
+        ], 201);
+    }
+
+    public function address()
+    {
+        $bill = Billing::where('user_id', request()->id)->get();
+        $ship = Shipping::where('user_id', request()->id)->get();
+
+        return response([
+            'bill' => $bill,
+            'ship' => $ship
         ], 201);
     }
 }

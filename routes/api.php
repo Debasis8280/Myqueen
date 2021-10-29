@@ -50,6 +50,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::get('profile_data', [APIProfileController::class, 'profile_data']);
     Route::get('get_pv_point', [APIProfileController::class, 'get_pv_point']);
     Route::get('order_history', [APIProfileController::class, 'order_history']);
+    Route::get('wallet_history', [APIProfileController::class, 'wallet_history']);
 });
 
 

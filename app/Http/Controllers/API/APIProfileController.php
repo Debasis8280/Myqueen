@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\PvPoint;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Http\Request;
 
 class APIProfileController extends Controller
@@ -57,5 +58,12 @@ class APIProfileController extends Controller
             $final,
             201
         );
+    }
+
+    public function wallet_history()
+    {
+        $data = Wallet::where('user_id', request()->user()->id)->get();
+
+        return response($data, 201);
     }
 }

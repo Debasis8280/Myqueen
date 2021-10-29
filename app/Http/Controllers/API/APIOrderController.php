@@ -373,4 +373,12 @@ class APIOrderController extends Controller
 
         return response(['order_summary' => $order_summary, 'order_details' => $order_details], 201);
     }
+
+    public function order_history_details()
+    {
+        $data = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
+            ->join('products', 'products.id', '=', 'order_items.product_id')
+            ->where('orders.id', request()->order_id)->get();
+        return response($data, 201);
+    }
 }

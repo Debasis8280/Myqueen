@@ -376,6 +376,9 @@ class APIOrderController extends Controller
 
     public function order_history_details()
     {
+        request()->validate([
+            'order_id' => 'required|exists:orders,id'
+        ]);
         $data = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
             ->where('orders.id', request()->order_id)->where('orders.user_id', request()->user()->id)->get();

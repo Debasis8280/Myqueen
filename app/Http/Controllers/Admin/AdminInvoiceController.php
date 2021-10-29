@@ -76,7 +76,7 @@ class AdminInvoiceController extends Controller
                 'self_pick_order_status' => $order_data->self_pick_order_status
             ];
         } else {
-            if ($order_data->billing_id == $order_data->shipping_id) {
+            if ($order_data->is_bill_same_ship == 1) {
                 $ship_address = Order::join('billings', 'billings.id', '=', 'orders.billing_id')
                     ->select('billings.first_name as firstname', 'billings.address', 'billings.country', 'billings.state', 'billings.zip')
                     ->where('orders.id', $id)->first();

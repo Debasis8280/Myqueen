@@ -165,6 +165,8 @@ class APIOrderController extends Controller
         $bill_id = 0;
         $ship_id = 0;
 
+        $is_bill_same_ship = 0;
+
         if ($request->is_self_pickup_selected == 'true') {
             $shipping_method = 'Self Pick';
             $status_id = 0;
@@ -202,6 +204,7 @@ class APIOrderController extends Controller
                 'updated_at'    => now()
             ]);
             $ship_id = $bill_id;
+            $is_bill_same_ship = 1;
         }
 
         if ($request->is_self_pickup_selected == 'false' && $request->is_ship_same_to_bill == 'false') {
@@ -231,6 +234,7 @@ class APIOrderController extends Controller
                 'created_at'    => now(),
                 'updated_at'    => now()
             ]);
+            $is_bill_same_ship = 0;
         }
 
 
@@ -241,6 +245,7 @@ class APIOrderController extends Controller
             'shipping_method' => $shipping_method,
             'user_ip' => $request->ip(),
             'order_currency' => '$',
+            'is_bill_same_ship' => $is_bill_same_ship,
             'billing_id' => $bill_id,
             'shipping_id' => $ship_id,
             'status_id' => $status_id,
@@ -329,7 +334,7 @@ class APIOrderController extends Controller
                 'total_amount' => $order_data->total
             ];
         } else {
-            if ($order_data->billing_id == $order_data->shipping_id) {
+            if ($order_data->is_bill_same_ship == 1) {
                 $ship_address = Order::join('billings', 'billings.id', '=', 'orders.billing_id')
                     ->where('orders.id', $request->order_id)->first();
             } else {

@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_method');
             $table->string('user_ip');
             $table->string('order_currency');
+            $table->integer('is_bill_same_ship')->default(0);
             $table->integer('billing_id');
             $table->integer('shipping_id')->nullable();
             $table->integer('status_id');

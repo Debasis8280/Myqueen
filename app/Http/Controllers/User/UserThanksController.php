@@ -71,7 +71,7 @@ class UserThanksController extends Controller
                 'total_amount' => $order_data->total
             ];
         } else {
-            if ($order_data->billing_id == $order_data->shipping_id) {
+            if ($order_data->is_bill_same_ship == 1) {
                 $ship_address = Order::join('billings', 'billings.id', '=', 'orders.billing_id')
                     ->where('orders.id', $id)->first();
             } else {

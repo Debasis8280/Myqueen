@@ -170,7 +170,7 @@ class UserOrderController extends Controller
         $bill_id = 0;
         $ship_id = 0;
         $status_id = 0;
-
+        $is_bill_same_ship = 0;
 
         if ($request->home_delivery_select == 1 && $request->ship_same_with_bill != null) {
             $bill_id = Billing::insertGetId([
@@ -187,6 +187,7 @@ class UserOrderController extends Controller
                 'updated_at'    => now()
             ]);
             $ship_id = $bill_id;
+            $is_bill_same_ship = 1;
             $status_id = 1;
         }
 
@@ -219,6 +220,7 @@ class UserOrderController extends Controller
             ]);
 
             $status_id = 1;
+            $is_bill_same_ship = 0;
         }
 
         $quentity = Cart::where('user_id', Auth::user()->id)->sum('quentity');
@@ -299,6 +301,7 @@ class UserOrderController extends Controller
             'shipping_method' => $shipping_method,
             'user_ip' => $request->ip(),
             'order_currency' => '$',
+            'is_bill_same_ship' => $is_bill_same_ship,
             'billing_id' => $bill_id,
             'shipping_id' => $ship_id,
             'status_id' => $status_id,

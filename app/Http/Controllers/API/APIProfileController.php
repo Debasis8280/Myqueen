@@ -47,6 +47,7 @@ class APIProfileController extends Controller
                 $status = 'Self Pick';
             }
             $final[] = [
+                'order_id' => $item->id,
                 'order_unique' => $item->order_unique,
                 'date' => $item->created_at,
                 'price' => $item->total,
@@ -65,5 +66,14 @@ class APIProfileController extends Controller
         $data = Wallet::where('user_id', request()->user()->id)->get();
 
         return response($data, 201);
+    }
+
+
+
+    public function edit_profile(Request $request)
+    {
+        $request->validate([
+            'email' => ''
+        ]);
     }
 }

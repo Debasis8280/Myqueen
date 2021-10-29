@@ -378,7 +378,7 @@ class APIOrderController extends Controller
     {
         $data = Order::join('order_items', 'order_items.order_id', '=', 'orders.id')
             ->join('products', 'products.id', '=', 'order_items.product_id')
-            ->where('orders.id', request()->order_id)->get();
+            ->where('orders.id', request()->order_id)->where('orders.user_id', request()->user()->id)->get();
         return response($data, 201);
     }
 }

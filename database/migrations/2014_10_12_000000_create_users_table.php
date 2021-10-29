@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->integer('right_row_count')->default(0);
             $table->integer('total_pv_point')->default(0);
             $table->decimal('total_direct_dponsor', 20, 2)->default(0);
+            $table->decimal('wallet', 20, 2);
             $table->rememberToken();
             $table->timestamps();
         });

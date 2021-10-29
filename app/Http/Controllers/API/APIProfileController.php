@@ -22,7 +22,8 @@ class APIProfileController extends Controller
     public function get_pv_point()
     {
         $data = PvPoint::join('orders', 'orders.id', '=', 'pv_points.order_id')
-            ->select('pv_points.*', 'orders.order_unique as order_unique_id')
+            ->join('users', 'users.id', '=', 'orders.user_id')
+            ->select('pv_points.*', 'orders.order_unique as order_unique_id', 'users.image')
             ->where('pv_points.user_id', request()->user()->id)
             ->get();
         return response(

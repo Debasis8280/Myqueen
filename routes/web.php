@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\AdminReturnController;
 use App\Http\Controllers\Admin\AdminShippingChargeController;
 use App\Http\Controllers\Admin\AdminUserProfileController;
 use App\Http\Controllers\Admin\AdminUsersController;
+use App\Http\Controllers\Admin\AdminWalletController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MLM\MLMDirectBonus;
 use App\Http\Controllers\MLM\MLMMatchingBonusController;
@@ -222,6 +223,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     // end payment
 
     Route::get('ad_user_profile/{id}', [AdminUserProfileController::class, 'show'])->name('profile.show');
+
+    Route::resource('wallet', AdminWalletController::class)->names([
+        'index' => 'wallet.index'
+    ])->middleware('signed');
 });
 
 // language change

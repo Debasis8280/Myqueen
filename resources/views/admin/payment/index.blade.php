@@ -18,7 +18,7 @@
                     @include('admin.payment.qrcodepay.index')
                 </div>
                 <div class="tab-pane fade" id="top_up" role="tabpanel" aria-labelledby="generate-tab">
-                    {{-- @include('admin.payment.topup.index') --}}
+                    @include('admin.payment.topup.index')
                 </div>
             </div>
         </div>

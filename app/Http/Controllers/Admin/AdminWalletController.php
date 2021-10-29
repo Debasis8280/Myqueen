@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
 
@@ -54,8 +55,12 @@ class AdminWalletController extends Controller
             'status' => 1
         ]);
 
-        // $da
+        $data = Wallet::where('id', $request->id)->first();
+        $user = User::where('id', $data->user_id)->first();
 
+        User::where('id', $data->user_id)->update([
+            'wallet' => $user->wallet + $data->amount
+        ]);
 
         echo json_encode(['status' => 'success', 'message' => 'Approve successfully']);
     }

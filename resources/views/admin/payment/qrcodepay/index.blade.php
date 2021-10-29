@@ -152,7 +152,7 @@
         $('#top_up_approve_btn').click(function(e) {
             e.preventDefault();
             $.ajax({
-                url: "{{ URL::sigmedRoute('admin.wallet.store') }}",
+                url: "{{ URL::signedRoute('admin.wallet.store') }}",
                 data: {
                     id: $('#top_up_details_id').val(),
                     "_token": "{{ csrf_token() }}"

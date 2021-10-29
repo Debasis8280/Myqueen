@@ -114,7 +114,8 @@
         // image
         function payment_image(data) {
             var url = "{{ asset('') }}";
-            return "<img src='" + url + data + "' width='100'>"
+            var img = data == null ? '' : data
+            return "<img src='" + url + img + "' width='100'>"
         }
 
         // show payment details

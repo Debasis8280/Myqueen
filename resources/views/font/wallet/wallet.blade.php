@@ -337,9 +337,9 @@
 
         function status(data) {
             if (data == 1) {
-                return '<span class="badge badge-inline badge-success">Paid</span>';
+                return '<span class="badge badge-inline badge-success">Success</span>';
             } else {
-                return '<span class="badge badge-inline badge-danger">Unpaid</span>';
+                return '<span class="badge badge-inline badge-danger">Pending</span>';
             }
         }
 

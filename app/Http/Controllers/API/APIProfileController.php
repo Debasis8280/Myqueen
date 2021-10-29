@@ -88,8 +88,8 @@ class APIProfileController extends Controller
 
     public function address()
     {
-        $bill = Billing::where('user_id', request()->id)->get();
-        $ship = Shipping::where('user_id', request()->id)->get();
+        $bill = Billing::where('user_id', request()->user()->id)->get();
+        $ship = Shipping::where('user_id', request()->user()->id)->get();
 
         return response([
             'bill' => $bill,

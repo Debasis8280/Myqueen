@@ -83,7 +83,7 @@ class UserThanksController extends Controller
             $order_summary = [
                 'order_no' => $order_data->order_unique,
                 'order_date' => $order_data->created_at,
-                'name'  => $ship_address->firstname . ' ' . $ship_address->lastname,
+                'name'  => $ship_address->first_name . ' ' . $ship_address->lastname,
                 'order_status' => 'Processing',
                 'email' => Auth::user()->email,
                 'total_order_amount' => $order_data->total,

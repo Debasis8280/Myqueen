@@ -43,7 +43,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('coupon', [APIOrderController::class, 'check_coupon']);
     Route::post('payment_qrcode', [APIOrderController::class, 'payment_qrcode']);
     Route::post('order_store', [APIOrderController::class, 'store_order']);
-
+    Route::get('redirect_thanks', [APIOrderController::class, 'redirect_thanks']);
 
 
 

@@ -303,4 +303,55 @@ class APIOrderController extends Controller
             'order_id' => $order_id
         ]);
     }
+
+
+    public function redirect_thanks(Request $request)
+    {
+        $check = SelfPick::where('order_id', $request->order_id)->first();
+        $order_data = Order::find($request->order_id);
+        if ($check) {
+            $order_summary = [
+                'order_no' => $order_data->order_unique,
+                'order_date' => $order_data->created_at,
+                'name'  => $request->user()->name,
+                'order_status' => 'Processing',
+                'email' => $request->user()->email,
+                'total_order_amount' => $order_data->total,
+                'shipping_address' => $check->country . ', ' . $check->state . ', ' . $check->zip,
+                'shipping' => $order_data->shipping_method,
+                'payment_method' => $order_data->payment_method,
+                'sub_total' => $order_data->order_sum,
+                'shipping_charge'   => $order_data->shipping_charge,
+                'coupon_discount'   => $order_data->how_may_discount . " " . $order_data->discount_type,
+                'total_amount' => $order_data->total
+            ];
+        } else {
+            if ($order_data->billing_id == $order_data->shipping_id) {
+                $ship_address = Order::join('billings', 'billings.id', '=', 'orders.billing_id')
+                    ->where('orders.id', $request->order_id)->first();
+            } else {
+                $ship_address = Order::join('shippings', 'shippings.id', '=', 'orders.shipping_id')
+                    ->where('orders.id', $request->order_id)->first();
+            }
+
+
+            $order_summary = [
+                'order_no' => $order_data->order_unique,
+                'order_date' => $order_data->created_at,
+                'name'  => $ship_address->first_name . ' ' . $ship_address->lastname,
+                'order_status' => 'Processing',
+                'email' => $request->user()->email,
+                'total_order_amount' => $order_data->total,
+                'shipping_address' => $ship_address->address . ", " . $ship_address->country . ', ' . $ship_address->state . ', ' . $ship_address->zip,
+                'shipping' => $order_data->shipping_method,
+                'payment_method' => $order_data->payment_method,
+                'sub_total' => $order_data->order_sum,
+                'shipping_charge'   => $order_data->shipping_charge,
+                'coupon_discount'   => $order_data->how_may_discount . " " . $order_data->discount_type,
+                'total_amount' => $order_data->total
+            ];
+        }
+
+        return response($order_summary, 201);
+    }
 }

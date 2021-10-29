@@ -121,7 +121,7 @@
         function show_top_up_model(id) {
             $('#show_top_up_details_modal').modal('show');
             $.ajax({
-
+                url: "{{ route('admin.wallet.show_details') }}",
                 type: 'get',
                 data: {
                     id: id
@@ -133,13 +133,13 @@
                 success: function(data) {
                     $('#big_loder').hide();
                     var url = "{{ asset('') }}";
-                    $('#top_up_details_id').val(data.ID);
-                    $('#top_up_payment_image_details').attr('src', url + data.payment_image);
+                    $('#top_up_details_id').val(data.id);
+                    $('#top_up_payment_image_details').attr('src', url + data.screen_shot);
                     $('#top_up_amount_details').html("$" + data.amount);
-                    $('#top_up_name_details').html(data.firstname);
+                    $('#top_up_name_details').html(data.name);
                     $('#top_up_email_details').html(data.email);
                     $('#top_up_phone_details').html(data.phone);
-                    $('#top_up_payment_date').html(data.date);
+                    $('#top_up_payment_date').html(data.created_at);
 
                 },
                 error: function(error) {
@@ -152,7 +152,7 @@
         $('#top_up_approve_btn').click(function(e) {
             e.preventDefault();
             $.ajax({
-
+                url: "{{ URL::sigmedRoute('admin.wallet.store') }}",
                 data: {
                     id: $('#top_up_details_id').val(),
                     "_token": "{{ csrf_token() }}"

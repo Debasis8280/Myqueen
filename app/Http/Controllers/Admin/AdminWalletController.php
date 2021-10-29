@@ -15,9 +15,6 @@ class AdminWalletController extends Controller
      */
     public function index()
     {
-        // $data = Wallet::leftJoin('users', 'wallets.user_id', '=', 'users.id')
-        //     ->select('wallets.id .*', 'users.name')
-        //     ->orderBy('wallets.id', 'desc')->get();
         $data = Wallet::join('users', 'users.id', '=', 'wallets.user_id')
             ->select('wallets.*', 'users.name')
             ->get();
@@ -31,7 +28,14 @@ class AdminWalletController extends Controller
      */
     public function create()
     {
-        //
+    }
+
+    public function show_details()
+    {
+        $data = Wallet::join('users', 'users.id', '=', 'wallets.user_id')
+            ->select('wallets.*', 'users.name', 'users.email', 'users.phone')
+            ->where('wallets.id', request()->id)->first();
+        echo  json_encode($data);
     }
 
     /**
@@ -42,7 +46,18 @@ class AdminWalletController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id' => 'required|exists:wallets,id',
+        ]);
+
+        Wallet::where('id', $request->id)->update([
+            'status' => 1
+        ]);
+
+        // $da
+
+
+        echo json_encode(['status' => 'success', 'message' => 'Approve successfully']);
     }
 
     /**

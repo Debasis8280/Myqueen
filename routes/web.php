@@ -224,8 +224,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
 
     Route::get('ad_user_profile/{id}', [AdminUserProfileController::class, 'show'])->name('profile.show');
 
+    Route::get('wallet/show_details', [AdminWalletController::class, 'show_details'])->name('wallet.show_details');
     Route::resource('wallet', AdminWalletController::class)->names([
-        'index' => 'wallet.index'
+        'index' => 'wallet.index',
+        'store' => 'wallet.store'
     ])->middleware('signed');
 });
 

@@ -188,7 +188,7 @@
     <div id="top_up_caption"></div>
 </div>
 
-
+<script src="{{ asset('asset/js/jquery-3.3.1.min.js') }}"></script>
 <script>
     // Get the modal
     var top_up_modal = document.getElementById("top_up_myModal");

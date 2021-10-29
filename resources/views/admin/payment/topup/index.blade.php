@@ -39,7 +39,7 @@
             <div class="modal-body">
                 <div class="row">
                     <input type="hidden" name="id" id="top_up_details_id">
-                    {{-- @include('admin.payment.topup.showDetails') --}}
+                    @include('admin.payment.topup.showDetails')
                 </div>
             </div>
             <div class="modal-footer">

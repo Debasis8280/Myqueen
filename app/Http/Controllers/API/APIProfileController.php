@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderStatus;
 use App\Models\PvPoint;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,9 +35,26 @@ class APIProfileController extends Controller
 
     public function order_history()
     {
-        $data = Order::where('user_id', request()->user()->id)->get();
+        $data = Order::select('orders.*')
+            ->where('orders.user_id', request()->user()->id)
+            ->orderBy('orders.id', 'desc')->get();
+        foreach ($data as $item) {
+            $status = OrderStatus::where('id', $item->status_id)->first();
+            if ($status) {
+                $status = $status->name;
+            } else {
+                $status = 'Self Pick';
+            }
+            $final[] = [
+                'order_unique' => $item->order_unique,
+                'date' => $item->created_at,
+                'price' => $item->total,
+                'status' => $status,
+                'ship_method' => $item->shipping_method
+            ];
+        }
         return response(
-            $data,
+            $final,
             201
         );
     }

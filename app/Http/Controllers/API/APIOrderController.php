@@ -307,6 +307,9 @@ class APIOrderController extends Controller
 
     public function redirect_thanks(Request $request)
     {
+        $request->validate([
+            'order_id' => 'required|exists:orders,id'
+        ]);
         $check = SelfPick::where('order_id', $request->order_id)->first();
         $order_data = Order::find($request->order_id);
         if ($check) {

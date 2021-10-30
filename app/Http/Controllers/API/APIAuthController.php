@@ -22,7 +22,7 @@ class APIAuthController extends Controller
         $user = User::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response([
-                'message' => 'Invalid User id'
+                'message' => 'Your username or password is incorrect'
             ], 401);
         }
 

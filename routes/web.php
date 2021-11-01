@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminForcastController;
 use App\Http\Controllers\Admin\AdminInventoryController;
 use App\Http\Controllers\Admin\AdminInvoiceController;
+use App\Http\Controllers\Admin\AdminMctPayController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminProductController;
@@ -228,6 +229,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::resource('wallet', AdminWalletController::class)->names([
         'index' => 'wallet.index',
         'store' => 'wallet.store'
+    ])->middleware('signed');
+
+    Route::get('mct_pay_show/{id}', [AdminMctPayController::class, 'show'])->name('mct.show');
+    Route::resource('mct_pay', AdminMctPayController::class)->names([
+        'create' => 'mct.create',
+        'store' => 'mct.store'
     ])->middleware('signed');
 });
 

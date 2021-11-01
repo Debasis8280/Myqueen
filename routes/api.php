@@ -54,6 +54,7 @@ Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::get('order_history_details', [APIOrderController::class, 'order_history_details']);
     Route::post('edit_profile', [APIProfileController::class, 'edit_profile']);
     Route::get('address', [APIProfileController::class, 'address']);
+    Route::get('pending_payment', [APIProfileController::class, 'pending_payment']);
 });
 
 

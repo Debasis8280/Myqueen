@@ -96,4 +96,11 @@ class APIProfileController extends Controller
             'ship' => $ship
         ], 201);
     }
+
+    public function pending_payment()
+    {
+        $data = Order::where('id', request()->user()->id)
+            ->where('payment_status', 0)->get();
+        return response($data, 201);
+    }
 }

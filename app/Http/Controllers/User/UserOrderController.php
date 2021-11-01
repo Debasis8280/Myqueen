@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Billing;
 use App\Models\Cart;
 use App\Models\Coupon;
+use App\Models\MCTPay;
 use App\Models\OfflinePay;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -328,6 +329,15 @@ class UserOrderController extends Controller
                 'user_id' => Auth::user()->id,
                 'order_id' => $order_id,
                 'screen_shot' => $screen_shot,
+                'status'    => 0
+            ]);
+        }
+
+        if ($request->mct_pay != null) {
+            MCTPay::create([
+                'user_id' => Auth::user()->id,
+                'order_id' => $order_id,
+                'amount' => $after_discount_amount != null ? $after_discount_amount + $delivery_charge : $order_sum + $delivery_charge,
                 'status'    => 0
             ]);
         }

@@ -65,9 +65,9 @@
 
         function table_payment_status(data) {
             if (data == 1) {
-                return '<span class="badge badge-inline badge-success">Paid</span>';
+                return '<span class="badge badge-inline badge-success">Approve</span>';
             } else {
-                return ' <span class="badge badge-inline badge-danger">Unpaid</span>';
+                return ' <span class="badge badge-inline badge-danger">Pending</span>';
             }
         }
 
@@ -114,8 +114,8 @@
         // image
         function payment_image(data) {
             var url = "{{ asset('') }}";
-            var img = data == null ? '' : data
-            return "<img src='" + url + img + "' width='100'>"
+
+            return data != null ? "<img src='" + url + data + "' width='100'>" : '--';
         }
 
         // show payment details
@@ -193,5 +193,42 @@
                 }
             })
         })
+
+
+
+
+        function show_mct_pay(params) {
+            $.ajax({
+                type: "GET",
+                url: "{{ URL::signedRoute('admin.mct.create') }}",
+                dataType: "json",
+                success: function(data) {
+                    params.success(data)
+                },
+                error: function(er) {
+                    params.error(er);
+                }
+            });
+        }
+
+        // action
+        function show_mct_pay_action(value, row, index) {
+            var show_details = "{{ route('admin.mct.show', ':id') }}";
+            show_details = show_details.replace(':id', row.id);
+            return [
+                '<a class="btn btn-soft-info  btn-icon btn-circle btn-sm" href="' + show_details + '" title="Delete" >',
+                '<i class="fa fa-eye" aria-hidden="true"></i>',
+                '</a>'
+            ].join('')
+        }
+
+
+        function mct_payment_status(data) {
+            if (data == 1) {
+                return '<span class="badge badge-inline badge-success">Approve</span>';
+            } else {
+                return ' <span class="badge badge-inline badge-danger">Pending</span>';
+            }
+        }
     </script>
 @endsection

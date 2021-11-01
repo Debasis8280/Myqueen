@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
-use App\Models\OfflinePay;
+use App\Models\MCTPay;
 use App\Models\Order;
 use App\Models\OrderStatus;
 use App\Models\SelfPick;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminPaymentController extends Controller
+class AdminMctPayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,6 @@ class AdminPaymentController extends Controller
      */
     public function index()
     {
-        return view('admin.payment.index');
     }
 
     /**
@@ -30,14 +29,13 @@ class AdminPaymentController extends Controller
      */
     public function create()
     {
-        $data = OfflinePay::join('users', 'users.id', '=', 'offline_pays.user_id')
-            ->join('orders', 'orders.id', '=', 'offline_pays.order_id')
-            ->select('offline_pays.*', 'users.name', 'orders.total', 'orders.payment_status as status')
-            ->orderBy('offline_pays.id', 'desc')
+        $data = MCTPay::join('users', 'users.id', '=', 'm_c_t_pays.user_id')
+            ->join('orders', 'orders.id', '=', 'm_c_t_pays.order_id')
+            ->select('m_c_t_pays.*', 'users.name', 'orders.total', 'orders.payment_status as status')
+            ->orderBy('m_c_t_pays.id', 'desc')
             ->get();
         echo $data;
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -47,9 +45,12 @@ class AdminPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $offline_pay = OfflinePay::where('id', $request->id)->first();
+        $request->validate([
+            'id' => 'required|exists:m_c_t_pays,id'
+        ]);
+        $offline_pay = MCTPay::where('id', $request->id)->first();
 
-        OfflinePay::where('id', $request->id)->update([
+        MCTPay::where('id', $request->id)->update([
             'status' => 1
         ]);
 
@@ -68,7 +69,7 @@ class AdminPaymentController extends Controller
      */
     public function show($id)
     {
-        $offline_pay = OfflinePay::where('id', $id)->first();
+        $offline_pay = MCTPay::where('id', $id)->first();
         if ($offline_pay) {
             $check = SelfPick::where('order_id', $offline_pay->order_id)->first();
             $order_data = Order::find($offline_pay->order_id);
@@ -149,7 +150,7 @@ class AdminPaymentController extends Controller
                     'products.saleprice'
                 )
                 ->where('orders.id', $order_data->id)->get();
-            return view('admin.payment.qrcodepay.payment_details')->with(['order_summary' => $order_summary, 'order_details' => $order_details]);
+            return view('admin.payment.mct-pay.payment_details')->with(['order_summary' => $order_summary, 'order_details' => $order_details]);
         } else {
             return view('404.index');
         }

@@ -29,9 +29,10 @@ class APIProductDetailsController extends Controller
             ->select('users.name as UserName', 'ratings.*')
             ->where('product_id', $id)->get();
 
-        return response([
-            $data
-        ], 201);
+        return response(
+            $data,
+            201
+        );
     }
 
 

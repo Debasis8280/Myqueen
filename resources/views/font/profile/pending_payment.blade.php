@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th data-checkbox="true" data-footer-formatter="total"></th>
-            <th data-field="order_unique">Sponser Id</th>
+            <th data-field="order_unique">Order Id</th>
             <th data-field="total" data-formatter="total_pending">Total
             </th>
             <th data-field="payment_status" data-formatter="payment_status">Payment Status

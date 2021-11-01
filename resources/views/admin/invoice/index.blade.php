@@ -111,9 +111,9 @@ $data = json_decode(json_encode($order_summary));
 
             <b>Payment: </b>
             @if ($data->payment_status == 1)
-                <span style="color: #fff;background-color: #28a745;padding: 8pt;">Paid</span>
+                <span style="color: #fff;background-color: #28a745;padding: 8pt;">Approve</span>
             @else
-                <span style="color: #fff;background-color: red;padding: 8pt;">Unpaid</span>
+                <span style="color: #fff;background-color: red;padding: 8pt;">Pending</span>
             @endif
             <br />
             <b>Status: </b>

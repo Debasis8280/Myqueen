@@ -102,9 +102,9 @@
                                         </td>
                                         <td>
                                             @if ($item->payment_status == 1)
-                                                <span class="badge badge-inline badge-success">Paid</span>
+                                                <span class="badge badge-inline badge-success">Approve</span>
                                             @else
-                                                <span class="badge badge-inline badge-danger">Unpaid</span>
+                                                <span class="badge badge-inline badge-danger">Pending</span>
                                             @endif
                                         </td>
                                         <td class="text-right">

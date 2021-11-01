@@ -99,7 +99,7 @@ class APIProfileController extends Controller
 
     public function pending_payment()
     {
-        $data = Order::where('id', request()->user()->id)
+        $data = Order::where('user_id', request()->user()->id)
             ->where('payment_status', 0)->get();
         return response($data, 201);
     }

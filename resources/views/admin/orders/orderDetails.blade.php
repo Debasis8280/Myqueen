@@ -147,9 +147,9 @@
                                             <td class="text-main text-bold">Payment status</td>
                                             <td class="text-right">
                                                 @if ($data->payment_status == 1)
-                                                    <span class="badge badge-inline badge-success">Paid</span>
+                                                    <span class="badge badge-inline badge-success">Approve</span>
                                                 @else
-                                                    <span class="badge badge-inline badge-danger">Unpaid</span>
+                                                    <span class="badge badge-inline badge-danger">Pending</span>
                                                 @endif
                                             </td>
                                         </tr>

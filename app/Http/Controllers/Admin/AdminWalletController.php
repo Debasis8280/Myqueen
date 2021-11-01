@@ -18,6 +18,7 @@ class AdminWalletController extends Controller
     {
         $data = Wallet::join('users', 'users.id', '=', 'wallets.user_id')
             ->select('wallets.*', 'users.name')
+            ->orderBy('wallets.id', 'desc')
             ->get();
         echo  $data;
     }

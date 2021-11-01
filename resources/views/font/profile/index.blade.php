@@ -50,7 +50,8 @@
                                             <div class="mt-3"
                                                 style="display: flex;align-items: flex-start;flex-direction: column;align-content: stretch;">
                                                 <h4>{{ Auth::user()->name }}</h4>
-                                                <p class="text-secondary mb-1 text-bold">Balance: 11111</p>
+                                                <p class="text-secondary mb-1 text-bold">Balance:
+                                                    {{ Auth::user()->wallet }}</p>
                                                 <p class="text-bold mb-1">Total Revenue: 6000.000</p>
                                                 <p class="text-bold mb-1">Points: {{ Auth::user()->total_pv_point }}pv</p>
                                             </div>

@@ -92,7 +92,7 @@ class UserProductsController extends Controller
             ]);
             $data = ['status' => 'success', 'message' => 'Rating Add Successfully'];
         } else {
-            $data = ['status' => 'faild', 'message' => 'You Alrady Rating This Product'];
+            $data = ['status' => 'faild', 'message' => 'You Already Rating This Product'];
         }
         echo json_encode($data);
     }

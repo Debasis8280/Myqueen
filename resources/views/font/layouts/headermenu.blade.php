@@ -30,9 +30,8 @@
                             <li><a href="{{ URL::signedRoute('users.show_wallet_page') }}">Credit Wallet</a></li>
                             <li><a href="{{ URL::signedRoute('users.show_royalty') }}">Royalty Point Wallet </a></li>
                             <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                                                                                                                                                document.getElementById('logout-form').submit();">Logout</a>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">Logout</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf

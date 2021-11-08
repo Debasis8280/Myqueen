@@ -43,4 +43,18 @@ class APIWelcomeController extends Controller
             $code
         );
     }
+
+
+    public function search()
+    {
+        $product = Product::where('title', 'Like', '%' . request()->term . '%')->get();
+        if ($product->count() > 0) {
+            foreach ($product as $item) {
+                $data[] = $item;
+            }
+        } else {
+            $data[] = ['label' => 'Not Found', 'id' => 0];
+        }
+        return response($data, 201);
+    }
 }

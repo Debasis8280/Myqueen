@@ -29,6 +29,7 @@ Route::get('v1/product_details/{id}', [APIProductDetailsController::class, 'prod
 Route::get('v1/get_all_review/{id}', [APIProductDetailsController::class, 'get_all_review']);
 Route::get('v1/all_country', [APIWelcomeController::class, 'all_country']);
 Route::get('v1/phone_code', [APIWelcomeController::class, 'get_country_code']);
+Route::post('v1/search', [APIWelcomeController::class, 'search']);
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [APIAuthController::class, 'logout']);

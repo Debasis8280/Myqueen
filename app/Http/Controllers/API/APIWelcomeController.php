@@ -50,7 +50,7 @@ class APIWelcomeController extends Controller
         $product = Product::where('title', 'Like', '%' . request()->term . '%')->get();
         if ($product->count() > 0) {
             foreach ($product as $item) {
-                $data[] = $item;
+                $data[] = ['id' => $item->id, 'image' => $item->productimagee, 'saleprice' => $item->saleprice, 'size' => $item->size, 'title' => $item->title];
             }
         } else {
             $data[] = ['label' => 'Not Found', 'id' => 0];
